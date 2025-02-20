@@ -2,7 +2,7 @@ export const ADD_NODE = 'ADD_NODE';
 export const UPDATE_NODE = 'UPDATE_NODE';
 export const DELETE_NODE = 'DELETE_NODE'; 
 export const ADD_EDGE = 'ADD_EDGE'; 
-export const UPDATE_RESULT = 'UPDATE_RESULT'; 
+export const UPDATE_RESULT = 'UPDATE_RESULT';
 
 
 export const addNode = (node) => ({
@@ -28,7 +28,9 @@ export const addEdge = (edge) => ({
   payload: edge,
 });
 
+
+
 export const updateResult = (result) => ({
-    type: 'UPDATE_RESULT',
-    payload: result,
-  });
+  type: UPDATE_RESULT,
+  payload: result,
+});

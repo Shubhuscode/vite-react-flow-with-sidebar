@@ -1,15 +1,22 @@
-import React, { useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import CustomNode from './CustomNode';
-import { useDispatch } from 'react-redux';
-import { deleteNode } from '../redux/actions'; // Import the delete action
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteNode, updateResult } from '../redux/actions';
 
 const UppercaseNode = ({ id, data }) => {
   const dispatch = useDispatch();
+  const inputValue = useSelector((state) => state.nodes.result); 
 
-  // Define the callback for deleting the node
+ 
+  useEffect(() => {
+    if (inputValue) {
+      const uppercaseValue = inputValue.toUpperCase();
+      dispatch(updateResult(uppercaseValue));
+    }
+  }, [inputValue, dispatch]);
+
   const onDeleteNode = useCallback(() => {
-    // Dispatch the deleteNode action with the id
-    dispatch(deleteNode(id));
+    dispatch(deleteNode(id)); 
   }, [dispatch, id]);
 
   return (
@@ -20,7 +27,7 @@ const UppercaseNode = ({ id, data }) => {
         label: 'Uppercase Node',
         description: 'Converts input to uppercase.',
       }}
-      onDeleteNode={onDeleteNode} // Pass the onDeleteNode callback
+      onDeleteNode={onDeleteNode}
     />
   );
 };

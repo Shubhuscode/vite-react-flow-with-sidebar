@@ -1,15 +1,15 @@
 import React, { useCallback } from 'react';
 import CustomNode from './CustomNode';
-import { useDispatch } from 'react-redux';
-import { deleteNode } from '../redux/actions'; // Import the delete action
+import { useDispatch, useSelector } from 'react-redux'; 
+import { deleteNode } from '../redux/actions'; 
 
-const ResultNode = ({ id, data, result }) => {
+const ResultNode = ({ id, data }) => {
   const dispatch = useDispatch();
+  const result = useSelector((state) => state.nodes.result); 
 
-  // Define the callback for deleting the node
+ 
   const onDeleteNode = useCallback(() => {
-    // Dispatch the deleteNode action with the id
-    dispatch(deleteNode(id));
+    dispatch(deleteNode(id)); 
   }, [dispatch, id]);
 
   return (
@@ -18,9 +18,10 @@ const ResultNode = ({ id, data, result }) => {
       data={{
         ...data,
         label: 'Result Node',
-        description: `Displays the result here: ${result}`,
+        description: `Result: ${result || 'No result available'}`, 
+        nodeColor: '#e0e0e0',
       }}
-      onDeleteNode={onDeleteNode} // Pass the onDeleteNode callback
+      onDeleteNode={onDeleteNode} 
     />
   );
 };

@@ -1,20 +1,20 @@
 import React, { useState, useCallback } from 'react';
 import CustomNode from './CustomNode';
 import { useDispatch } from 'react-redux';
-import { deleteNode } from '../redux/actions'; 
+import { deleteNode, updateResult } from '../redux/actions'; 
 
 const InputNode = ({ id, data }) => {
   const [inputValue, setInputValue] = useState('');
   const dispatch = useDispatch();
 
+ 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
+    dispatch(updateResult(event.target.value)); 
   };
 
-
   const onDeleteNode = useCallback(() => {
-   
-    dispatch(deleteNode(id));
+    dispatch(deleteNode(id)); 
   }, [dispatch, id]);
 
   return (
@@ -42,7 +42,7 @@ const InputNode = ({ id, data }) => {
           </>
         ),
       }}
-      onDeleteNode={onDeleteNode} 
+      onDeleteNode={onDeleteNode}
     />
   );
 };

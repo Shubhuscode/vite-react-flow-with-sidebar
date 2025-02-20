@@ -1,14 +1,14 @@
 import React, { useCallback } from 'react';
 import CustomNode from './CustomNode';
 import { useDispatch } from 'react-redux';
-import { deleteNode } from '../redux/actions'; // Import the delete action
+import { deleteNode } from '../redux/actions'; 
 
 const TextCardNode = ({ id, data }) => {
   const dispatch = useDispatch();
 
-  // Define the callback for deleting the node
+ 
   const onDeleteNode = useCallback(() => {
-    // Dispatch the deleteNode action with the id
+    
     dispatch(deleteNode(id));
   }, [dispatch, id]);
 
@@ -20,7 +20,7 @@ const TextCardNode = ({ id, data }) => {
         label: 'Text Card Node',
         description: 'Displays a card with text content.',
       }}
-      onDeleteNode={onDeleteNode} // Pass the onDeleteNode callback
+      onDeleteNode={onDeleteNode} 
     />
   );
 };
